@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.core.io.Resource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
@@ -26,12 +26,12 @@ public class DataLoader implements ApplicationRunner {
 
 
     public String loadFile() throws IOException {
-        Resource resource = resourceLoader.getResource("classpath:levels.json");
+        ClassPathResource resource = new ClassPathResource("levels.json");
         byte[] bytes = Files.readAllBytes(resource.getFile().toPath());
         return new String(bytes, StandardCharsets.UTF_8);
     }
 
-    public void run(ApplicationArguments args) throws IOException {
+    public void run(ApplicationArguments args) {
         List<Level> levels = levelDAO.getAll();
         if (levels.isEmpty()) {
             ObjectMapper mapper = new ObjectMapper();
