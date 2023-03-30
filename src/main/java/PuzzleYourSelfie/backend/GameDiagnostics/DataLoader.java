@@ -4,16 +4,15 @@ import PuzzleYourSelfie.backend.GameDiagnostics.Level.Level;
 import PuzzleYourSelfie.backend.GameDiagnostics.Level.LevelDAO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.AllArgsConstructor;
-import org.apache.catalina.core.ApplicationContext;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
+import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.List;
@@ -32,8 +31,8 @@ public class DataLoader implements ApplicationRunner {
 
     //TODO: make sure file gets read in the dev environment as well als the production environment
     public String loadFileFromJar(ApplicationContext context) throws IOException {
-        URL resource = context.getResource("classpath:levels.json");
-        InputStream inputStream = resource.openStream();
+        Resource resource = context.getResource("classpath:levels.json");
+        InputStream inputStream = resource.getInputStream();
         Scanner scanner = new Scanner(inputStream, StandardCharsets.UTF_8);
         String fileContent = scanner.useDelimiter("\\A").next();
         scanner.close();
