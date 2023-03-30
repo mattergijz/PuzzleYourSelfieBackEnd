@@ -29,7 +29,7 @@ public class DataLoader implements ApplicationRunner {
 
     ApplicationContext context;
 
-    //TODO: make sure file gets read in the dev environment as well als the production environment
+    //TODO: make service on VPS to auto start spring boot in background
     public String loadFileFromJar(ApplicationContext context) throws IOException {
         Resource resource = context.getResource("classpath:levels.json");
         InputStream inputStream = resource.getInputStream();
