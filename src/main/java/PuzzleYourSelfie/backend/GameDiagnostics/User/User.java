@@ -1,6 +1,8 @@
 package PuzzleYourSelfie.backend.GameDiagnostics.User;
 
 
+import PuzzleYourSelfie.backend.GameDiagnostics.converter.ToLowerCaseConverter;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -27,6 +29,7 @@ public class User {
 
     private int age;
 
+    @JsonDeserialize(converter = ToLowerCaseConverter.class)
     private String name;
 
     @CreationTimestamp
