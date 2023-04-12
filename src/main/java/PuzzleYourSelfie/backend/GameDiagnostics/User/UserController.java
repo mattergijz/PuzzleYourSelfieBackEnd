@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/user")
@@ -18,10 +19,12 @@ public class UserController {
     private UserDAO userDAO;
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public ApiResponse<String> createUser(@RequestBody Map<String, Object> body) {
-        int age = Integer.parseInt(String.valueOf(body.get("age")));
-        String name = String.valueOf(body.get("name"));
-        userDAO.saveToDatabase(new User(age, name));
-        return new ApiResponse<>(HttpStatus.ACCEPTED, "User was created");
+    public ApiResponse<UUID> createUser(@RequestBody Map<String, Object> body) {
+        UUID userId = userDAO.createUser(body);
+        if (userId != null) {
+            return new ApiResponse<>(HttpStatus.ACCEPTED, userId, "User was created");
+        } else {
+            return new ApiResponse<>(HttpStatus.BAD_REQUEST, "");
+        }
     }
 }
