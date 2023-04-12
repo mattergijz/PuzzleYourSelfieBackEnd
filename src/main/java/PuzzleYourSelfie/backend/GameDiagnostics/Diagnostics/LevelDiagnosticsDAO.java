@@ -2,10 +2,10 @@ package PuzzleYourSelfie.backend.GameDiagnostics.Diagnostics;
 
 import PuzzleYourSelfie.backend.GameDiagnostics.Level.Level;
 import PuzzleYourSelfie.backend.GameDiagnostics.Level.LevelDAO;
-import PuzzleYourSelfie.backend.GameDiagnostics.LevelNotFoundException;
+import PuzzleYourSelfie.backend.GameDiagnostics.exception.LevelNotFoundException;
 import PuzzleYourSelfie.backend.GameDiagnostics.User.User;
 import PuzzleYourSelfie.backend.GameDiagnostics.User.UserDAO;
-import PuzzleYourSelfie.backend.GameDiagnostics.UserNotFoundException;
+import PuzzleYourSelfie.backend.GameDiagnostics.exception.UserNotFoundException;
 import PuzzleYourSelfie.backend.GameDiagnostics.model.LevelDiagnosticsIncomingRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
