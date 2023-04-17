@@ -15,7 +15,9 @@ import java.util.Optional;
 @Component
 @AllArgsConstructor
 public class LevelDiagnosticsDAO {
+
     private LevelDiagnosticsRepository levelDiagnosticsRepository;
+
     private LevelDAO levelDAO;
 
     private UserDAO userDAO;
